@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+#INDEX/READ
+get '/polls',     to: 'polls#index'
+
+#SHOW/READ
+get '/polls/:id', to: 'polls#show'
+
+#CREATE
+get 'polls',      to: 'polls#create'
+
+#DELETE
+get 'polls',      to: 'polls#delete'
+
+#UPDATE
+get 'polls',      to 'polls#update'
+
 end
