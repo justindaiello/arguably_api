@@ -1,0 +1,3 @@
+CREATE TABLE polls (id SERIAL, question VARCHAR(240), answers TEXT[], bullet_points1 TEXT[], bullet_points2 TEXT[], image VARCHAR(240));
+INSERT INTO polls (question, answers, bullet_points1, bullet_points2) VALUES ('Is a hotdog a sandwich?', ARRAY ['YES', 'NO', 'MAYBE'], ARRAY ['Hotdog bun is not a proper bun.', 'What kind of monster are you?'], ARRAY ['It is a beautiful example of a sandwhich.', 'A hotdog is sandwhich embodied.']);
+INSERT INTO polls (question, answers, bullet_points1, bullet_points2) VALUES ('Is U2 a good band?', ARRAY ['YES', 'NO', 'MAYBE'], ARRAY ['WHAT? Are you serious?', 'I would rather listen to nails on a chalkboard'], ARRAY ['I exclusively listen to U2', 'BONO is my bff.']);
