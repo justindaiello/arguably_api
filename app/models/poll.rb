@@ -1,3 +1,4 @@
+require 'json/ext'
 class Poll
 
   # connect to postgres
@@ -10,9 +11,14 @@ class Poll
       {
         "id"              => result["id"].to_i,
         "question"        => result["question"],
-        "answers"         => result["answers"],
-        "bullet_points1"  => result["bullet_points1"],
-        "bullet_points2"  => result["bullet_points2"],
+        "answer1"         => result["answer1"],
+        "answer2"         => result["answer2"],
+        "bp1"             => result["bp1"],
+        "bp2"             => result["bp2"],
+        "bp3"             => result["bp3"],
+        "bp4"             => result["bp4"],
+        "bp5"             => result["bp5"],
+        "bp6"             => result["bp6"],
         "image"           => result["image"],
         "open"            => result["open"]
       }
@@ -25,9 +31,14 @@ class Poll
     return {
       "id"              => results.first["id"].to_i,
       "question"        => results.first["question"],
-      "answers"         => results.first["answers"],
-      "bullet_points1"  => results.first["bullet_points1"],
-      "bullet_points2"  => results.first["bullet_points2"],
+      "answer1"         => results.first["answer1"],
+      "answer2"         => results.first["answer2"],
+      "bp1"             => results.first["bp1"],
+      "bp2"             => results.first["bp2"],
+      "bp3"             => results.first["bp3"],
+      "bp4"             => results.first["bp4"],
+      "bp5"             => results.first["bp5"],
+      "bp6"             => results.first["bp6"],
       "image"           => results.first["image"],
       "open"            => results.first["open"]
     }
@@ -38,16 +49,21 @@ class Poll
     results = DB.exec(
       <<-SQL
         INSERT INTO polls (question, answers, bullet_points1, bullet_points2, image)
-        VALUES ('#{opts["question"]}', '#{opts["answers"]}', '#{opts["bullet_points1"]}', '#{opts["bullet_points2"]}', '#{opts["image"]}', '#{opts["open"]}')
-        RETURNING id, question, answers, bullet_points1, bullet_points2, image, open
+        VALUES ('#{opts["question"]}', '#{opts["answer1"]}', '#{opts["answer2"]}', '#{opts["bp1"]}', '#{opts["bp2"]}', '#{opts["bp3"]}',  '#{opts["bp4"]}', '#{opts["bp5"]}', '#{opts["bp6"]}', '#{opts["image"]}', '#{opts["open"]}')
+        RETURNING id, question, answer1, answer2 bp1, bp2, bp3, bp4, bp5, bp6, image, open
       SQL
     )
     return {
       "id"              => results.first["id"].to_i,
       "question"        => results.first["question"],
-      "answers"         => results.first["answers"],
-      "bullet_points1"  => results.first["bullet_points1"],
-      "bullet_points2"  => results.first["bullet_points2"],
+      "answer1"         => results.first["answer1"],
+      "answer2"         => results.first["answer2"],
+      "bp1"             => results.first["bp1"],
+      "bp2"             => results.first["bp2"],
+      "bp3"             => results.first["bp3"],
+      "bp4"             => results.first["bp4"],
+      "bp5"             => results.first["bp5"],
+      "bp6"             => results.first["bp6"],
       "image"           => results.first["image"],
       "open"            => results.first["open"]
     }
@@ -65,21 +81,31 @@ class Poll
       <<-SQL
         UPDATE polls
         SET question='#{opts["question"]}',
-            answers='#{opts["answers"]}',
-            bullet_points1='#{opts["bullet_points1"]}',
-            bullet_points2='#{opts["bullet_points2"]}',
+            answer1='#{opts["answer1"]}',
+            answer2='#{opts["answer2"]}',
+            bp1='#{opts["bp1"]}',
+            bp2='#{opts["bp2"]}',
+            bp3='#{opts["bp3"]}',
+            bp4='#{opts["bp4"]}',
+            bp5='#{opts["bp5"]}',
+            bp6='#{opts["bp6"]}',
             image='#{opts["image"]}',
             open='#{opts["open"]}'
         WHERE id=#{id}
-        RETURNING id, question, answers, bullet_points1, bullet_points2, image;
+        RETURNING id, question, answer1, answer2 bp1, bp2, bp3, bp4, bp5, bp6, image;
       SQL
     )
     return {
       "id"              => results.first["id"].to_i,
       "question"        => results.first["question"],
-      "answers"         => results.first["answers"],
-      "bullet_points1"  => results.first["bullet_points1"],
-      "bullet_points2"  => results.first["bullet_points2"],
+      "answer1"         => results.first["answer1"],
+      "answer2"         => results.first["answer2"],
+      "bp1"             => results.first["bp1"],
+      "bp2"             => results.first["bp2"],
+      "bp3"             => results.first["bp3"],
+      "bp4"             => results.first["bp4"],
+      "bp5"             => results.first["bp5"],
+      "bp6"             => results.first["bp6"],
       "image"           => results.first["image"],
       "open"            => results.first["open"]
     }
