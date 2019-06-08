@@ -31,6 +31,7 @@ class Poll
     }
   end
 
+  #CREATE a poll
   def self.create(opts)
     results = DB.exec(
       <<-SQL
@@ -47,6 +48,12 @@ class Poll
       "bullet_points2"  => results.first["bullet_points2"],
       "image"           => results.first["image"]
     }
+  end
+
+  #DELETE a poll
+  def self.delete(id)
+    results = DB.exec("DELETE FROM polls where id=#{id};")
+    return { "deleted" => true }
   end
 
 

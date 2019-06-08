@@ -12,4 +12,8 @@ class PollsController < ApplicationController
     render json: Poll.create(params["poll"])
   end
 
+  def delete
+    render json: Poll.delete(params["id"])
+  end
+
 end
