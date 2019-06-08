@@ -13,6 +13,6 @@ get 'polls',      to: 'polls#create'
 get 'polls',      to: 'polls#delete'
 
 #UPDATE
-get 'polls',      to 'polls#update'
+get 'polls',      to: 'polls#update'
 
 end
