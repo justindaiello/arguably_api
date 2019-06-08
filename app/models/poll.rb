@@ -13,7 +13,8 @@ class Poll
         "answers"         => result["answers"],
         "bullet_points1"  => result["bullet_points1"],
         "bullet_points2"  => result["bullet_points2"],
-        "image"           => result["image"]
+        "image"           => result["image"],
+        "open"            => result["open"]
       }
     end
   end
@@ -27,7 +28,8 @@ class Poll
       "answers"         => results.first["answers"],
       "bullet_points1"  => results.first["bullet_points1"],
       "bullet_points2"  => results.first["bullet_points2"],
-      "image"           => results.first["image"]
+      "image"           => results.first["image"],
+      "open"            => results.first["open"]
     }
   end
 
@@ -36,8 +38,8 @@ class Poll
     results = DB.exec(
       <<-SQL
         INSERT INTO polls (question, answers, bullet_points1, bullet_points2, image)
-        VALUES ('#{opts["question"]}', '#{opts["answers"]}', '#{opts["bullet_points1"]}', '#{opts["bullet_points2"]}', '#{opts["image"]}')
-        RETURNING id, question, answers, bullet_points1, bullet_points2, image
+        VALUES ('#{opts["question"]}', '#{opts["answers"]}', '#{opts["bullet_points1"]}', '#{opts["bullet_points2"]}', '#{opts["image"]}', '#{opts["open"]}')
+        RETURNING id, question, answers, bullet_points1, bullet_points2, image, open
       SQL
     )
     return {
@@ -46,7 +48,8 @@ class Poll
       "answers"         => results.first["answers"],
       "bullet_points1"  => results.first["bullet_points1"],
       "bullet_points2"  => results.first["bullet_points2"],
-      "image"           => results.first["image"]
+      "image"           => results.first["image"],
+      "open"            => results.first["open"]
     }
   end
 
@@ -65,7 +68,8 @@ class Poll
             answers='#{opts["answers"]}',
             bullet_points1='#{opts["bullet_points1"]}',
             bullet_points2='#{opts["bullet_points2"]}',
-            image='#{opts["image"]}'
+            image='#{opts["image"]}',
+            open='#{opts["open"]}'
         WHERE id=#{id}
         RETURNING id, question, answers, bullet_points1, bullet_points2, image;
       SQL
@@ -76,7 +80,8 @@ class Poll
       "answers"         => results.first["answers"],
       "bullet_points1"  => results.first["bullet_points1"],
       "bullet_points2"  => results.first["bullet_points2"],
-      "image"           => results.first["image"]
+      "image"           => results.first["image"],
+      "open"            => results.first["open"]
     }
   end
 
