@@ -1,3 +1,8 @@
-CREATE TABLE polls (id SERIAL, question VARCHAR(240), answers text[], bullet_points1 text[], bullet_points2 text[], image VARCHAR(240), open BOOLEAN);
-INSERT INTO polls (question, answers, bullet_points1, bullet_points2, open) VALUES ('Is a hotdog a sandwich?', '{"Yes it is", "No it is not"}', '{"Hotdog bun is not a proper bun.", "What kind of monster are you?"}', '{"It is a beautiful example of a sandwich.", "A hotdog is sandwich embodied."}', true);
-INSERT INTO polls (question, answers, bullet_points1, bullet_points2, open) VALUES ('Is an open face sandwich a sandwich?', '{"Yes it is", "No it is not"}', '{"Are you crazy?", "What kind of monster are you?"}', '{"It is a beautiful example of a sandwich.", "Openface is sandwich embodied."}', true);
+CREATE TABLE polls (id SERIAL, question VARCHAR(240), answer1 VARCHAR(50), answer2 VARCHAR(50), bp1 VARCHAR(240), bp2 VARCHAR(240), bp3 VARCHAR(240), bp4 VARCHAR(240), bp5 VARCHAR(240), bp6 VARCHAR(240), image VARCHAR(240), open BOOLEAN);
+
+INSERT INTO polls (question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, open) VALUES ('Is a hotdog a sandwhich?', 'YES', 'NO', 'Of course it is', 'It is inside bread', 'Yes it is', 'No it is not', 'Are you crazy?', 'Random thing here', true);
+
+INSERT INTO polls (question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, open) VALUES ('Is mayo a condiment?', 'YES', 'NO', 'Of course it is', 'It is a condiment', 'Yes it is', 'No it is not', 'Are you crazy?', 'Random thing here', true);
+
+
+INSERT INTO polls (question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, open) VALUES ('Is mayo a condiment?', 'YES', 'NO', 'Of course it is', 'It is a condiment', 'Yes it is', 'No it is not', 'Are you crazy?', 'Random thing here', false);
