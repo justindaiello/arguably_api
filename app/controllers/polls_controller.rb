@@ -8,4 +8,8 @@ class PollsController < ApplicationController
     render json: Poll.find(params["id"])
   end
 
+  def create
+    render json: Poll.create(params["poll"])
+  end
+
 end

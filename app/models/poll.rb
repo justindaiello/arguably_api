@@ -1,4 +1,4 @@
-class Poll <ApplicationRecord
+class Poll
 
   # connect to postgres
   DB = PG.connect({:host => "localhost", :port => 5432, :dbname => 'arguably_api_development'})
@@ -21,6 +21,24 @@ class Poll <ApplicationRecord
   #READ/SHOW one
   def self.find(id)
     results = DB.exec("SELECT * FROM polls WHERE id=#{id};")
+    return {
+      "id"              => results.first["id"].to_i,
+      "question"        => results.first["question"],
+      "answers"         => results.first["answers"],
+      "bullet_points1"  => results.first["bullet_points1"],
+      "bullet_points2"  => results.first["bullet_points2"],
+      "image"           => results.first["image"]
+    }
+  end
+
+  def self.create(opts)
+    results = DB.exec(
+      <<-SQL
+        INSERT INTO polls (question, answers, bullet_points1, bullet_points2, image)
+        VALUES ('#{opts["question"]}', '#{opts["answers"]}', '#{opts["bullet_points1"]}', '#{opts["bullet_points2"]}', '#{opts["image"]}')
+        RETURNING id, question, answers, bullet_points1, bullet_points2, image
+      SQL
+    )
     return {
       "id"              => results.first["id"].to_i,
       "question"        => results.first["question"],

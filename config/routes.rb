@@ -7,12 +7,12 @@ get '/polls',     to: 'polls#index'
 get '/polls/:id', to: 'polls#show'
 
 #CREATE
-get 'polls',      to: 'polls#create'
+post 'polls',      to: 'polls#create'
 
 #DELETE
-get 'polls',      to: 'polls#delete'
+delete 'polls',      to: 'polls#delete'
 
 #UPDATE
-get 'polls',      to: 'polls#update'
+put 'polls',      to: 'polls#update'
 
 end
