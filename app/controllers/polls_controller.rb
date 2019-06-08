@@ -16,4 +16,8 @@ class PollsController < ApplicationController
     render json: Poll.delete(params["id"])
   end
 
+  def update
+    render json: Poll.update(params["id"], params["poll"])
+  end
+
 end

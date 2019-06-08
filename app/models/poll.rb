@@ -56,5 +56,28 @@ class Poll
     return { "deleted" => true }
   end
 
+  #UPDATE a poll
+  def self.update(id, opts)
+    results = DB.exec(
+      <<-SQL
+        UPDATE polls
+        SET question='#{opts["question"]}',
+            answers='#{opts["answers"]}',
+            bullet_points1='#{opts["bullet_points1"]}',
+            bullet_points2='#{opts["bullet_points2"]}',
+            image='#{opts["image"]}'
+        WHERE id=#{id}
+        RETURNING id, question, answers, bullet_points1, bullet_points2, image;
+      SQL
+    )
+    return {
+      "id"              => results.first["id"].to_i,
+      "question"        => results.first["question"],
+      "answers"         => results.first["answers"],
+      "bullet_points1"  => results.first["bullet_points1"],
+      "bullet_points2"  => results.first["bullet_points2"],
+      "image"           => results.first["image"]
+    }
+  end
 
 end
