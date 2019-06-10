@@ -2,14 +2,12 @@ require 'json/ext'
 class Poll
 
   # connect to postgres
-  if(ENV['DATABASE_URL'])
-    uri = URI.parse(ENV['DATABASE_URL'])
+  if(ENV['https://arguably-us.herokuapp.com/'])
+    uri = URI.parse(ENV['https://arguably-us.herokuapp.com/'])
     DB = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
     else
     DB = PG.connect(host: "localhost", port: 5432, dbname: 'arguably_api_development')
   end
-
-  # DB = PG.connect({:host => "localhost", :port => 5432, :dbname => 'arguably_api_development'})
 
   #READ/SHOW all
   def self.all
