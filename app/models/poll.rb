@@ -48,9 +48,9 @@ class Poll
   def self.create(opts)
     results = DB.exec(
       <<-SQL
-        INSERT INTO polls (question, answers, bullet_points1, bullet_points2, image)
+        INSERT INTO polls (question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, image, open)
         VALUES ('#{opts["question"]}', '#{opts["answer1"]}', '#{opts["answer2"]}', '#{opts["bp1"]}', '#{opts["bp2"]}', '#{opts["bp3"]}',  '#{opts["bp4"]}', '#{opts["bp5"]}', '#{opts["bp6"]}', '#{opts["image"]}', '#{opts["open"]}')
-        RETURNING id, question, answer1, answer2 bp1, bp2, bp3, bp4, bp5, bp6, image, open
+        RETURNING id, question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, image, open
       SQL
     )
     return {
