@@ -2,7 +2,14 @@ require 'json/ext'
 class Poll
 
   # connect to postgres
-  DB = PG.connect({:host => "localhost", :port => 5432, :dbname => 'arguably_api_development'})
+  if(ENV['DATABASE_URL'])
+    uri = URI.parse(ENV['DATABASE_URL'])
+    DB = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
+    else
+    DB = PG.connect(host: "localhost", port: 5432, dbname: 'arguably_api_development')
+  end
+
+  # DB = PG.connect({:host => "localhost", :port => 5432, :dbname => 'arguably_api_development'})
 
   #READ/SHOW all
   def self.all
