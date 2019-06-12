@@ -57,9 +57,9 @@ class Poll
   def self.create(opts)
     results = DB.exec(
       <<-SQL
-        INSERT INTO polls (question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, image, votes1, votes2, open)
-        VALUES ('#{opts["question"]}', '#{opts["answer1"]}', '#{opts["answer2"]}', '#{opts["bp1"]}', '#{opts["bp2"]}', '#{opts["bp3"]}',  '#{opts["bp4"]}', '#{opts["bp5"]}', '#{opts["bp6"]}', '#{opts["image"]}', '#{opts["votes2"]}', '#{opts["votes2"]}', '#{opts["open"]}')
-        RETURNING id, question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, image, votes1, votes2 open
+        INSERT INTO polls (question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, image, open)
+        VALUES ('#{opts["question"]}', '#{opts["answer1"]}', '#{opts["answer2"]}', '#{opts["bp1"]}', '#{opts["bp2"]}', '#{opts["bp3"]}',  '#{opts["bp4"]}', '#{opts["bp5"]}', '#{opts["bp6"]}', '#{opts["image"]}', '#{opts["open"]}')
+        RETURNING id, question, answer1, answer2, bp1, bp2, bp3, bp4, bp5, bp6, image, open
       SQL
     )
     return {
@@ -74,8 +74,6 @@ class Poll
       "bp5"             => results.first["bp5"],
       "bp6"             => results.first["bp6"],
       "image"           => results.first["image"],
-      "votes1"           => results.first["votes1"].to_i,
-      "votes2"           => results.first["votes2"].to_i,
       "open"            => results.first["open"]
     }
   end
