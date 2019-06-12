@@ -25,8 +25,6 @@ class Poll
         "bp5"             => result["bp5"],
         "bp6"             => result["bp6"],
         "image"           => result["image"],
-        "votes1"           => result["votes1"].to_i,
-        "votes2"           => result["votes2"].to_i,
         "open"            => result["open"]
       }
     end
@@ -47,8 +45,6 @@ class Poll
       "bp5"             => results.first["bp5"],
       "bp6"             => results.first["bp6"],
       "image"           => results.first["image"],
-      "votes1"           => results.first["votes1"].to_i,
-      "votes2"           => results.first["votes2"].to_i,
       "open"            => results.first["open"]
     }
   end
@@ -99,11 +95,9 @@ class Poll
             bp5='#{opts["bp5"]}',
             bp6='#{opts["bp6"]}',
             image='#{opts["image"]}',
-            votes1='#{opts["votes1"]}',
-            votes2='#{opts["votes2"]}',
             open='#{opts["open"]}'
         WHERE id=#{id}
-        RETURNING id, question, answer1, answer2 bp1, bp2, bp3, bp4, bp5, bp6, image, votes1, votes2;
+        RETURNING id, question, answer1, answer2 bp1, bp2, bp3, bp4, bp5, bp6, image;
       SQL
     )
     return {
@@ -118,8 +112,6 @@ class Poll
       "bp5"             => results.first["bp5"],
       "bp6"             => results.first["bp6"],
       "image"           => results.first["image"],
-      "votes1"           => results.first["votes1"].to_i,
-      "votes2"           => results.first["votes2"].to_i,
       "open"            => results.first["open"]
     }
   end
